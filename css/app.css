@@ -21,7 +21,7 @@ body {
   font-family: 'Coda', cursive;
 }
 
-.container {
+#container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,10 +82,20 @@ h1 {
   font-size: 33px;
 }
 
-/* .flip {
-  transform: rotateY(-rad);
-  transition-duration: 2s;
-} */
+#game-over-screen {
+  background: lightgray;
+  width: 660px;
+  height: 700px;
+  /* font-size: 100px; */
+  top: 100px;
+  position: absolute;
+  text-align: center;
+  border-radius: 6px;
+}
+
+#game-over-message {
+  margin-top: 40%;
+}
 
 /*
  * Styles for the Score Panel
