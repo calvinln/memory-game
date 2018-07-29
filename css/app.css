@@ -86,7 +86,7 @@ h1 {
   background: lightgray;
   width: 660px;
   height: 700px;
-  top: 100px;
+  top: 128px;
   font-size: 25px;
   position: absolute;
   text-align: center;
@@ -103,7 +103,7 @@ h1 {
 
 .score-panel {
   text-align: left;
-  width: 345px;
+  width: 450px;
   margin-bottom: 10px;
 }
 
@@ -120,6 +120,12 @@ h1 {
 }
 
 .score-panel .restart {
-  float: right;
+  position: absolute;
+  margin-left: 275px;
   cursor: pointer;
+}
+
+#timer {
+  display: inline-block;
+  text-align: center;
 }

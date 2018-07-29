@@ -27,7 +27,10 @@ let repeat = document.getElementsByClassName('fa-repeat')[0];
 let openCards;
 let lockedCards;
 let moveCounter;
-repeat.addEventListener('click', restart);
+repeat.addEventListener('click', function() {
+  clearInterval(timer);
+  restart();
+});
 
 class Card {
   constructor(symbol, domCard) {
@@ -46,8 +49,15 @@ let symbols = [
   symbolName.BICYCLE,
   symbolName.BOMB
 ];
+let timer;
 
 function restart() {
+  timer = window.setInterval(updateTime, 1000);
+  minutes = 0;
+  seconds = 0;
+  document.getElementById('minutes').innerHTML = '00';
+  document.getElementById('seconds').innerHTML = '00';
+
   if (lockedCards >= 16) {
     let container = document.getElementById('container');
     container.removeChild(document.getElementById('game-over-screen'));
@@ -136,21 +146,32 @@ function addOpenCard(card) {
 }
 
 function gameOver() {
+  clearInterval(timer);
   setTimeout(() => {
     let gameOverScreen = document.createElement('div');
-    gameOverScreen.id = 'game-over-screen';
     let container = document.getElementById('container');
-    container.appendChild(gameOverScreen);
     let gameOverMessage = document.createElement('div');
-    gameOverMessage.innerHTML = 'Congratulations! You Won!';
-    gameOverMessage.id = 'game-over-message';
     let finalResult = document.createElement('div');
     let starString = starCount === 1 ? ' star.' : ' stars.';
+    let playAgainBtn = document.createElement('button');
+    let min = minutes === 1 ? minutes + ' minute' : minutes + ' minutes';
+    let sec = seconds + ' seconds.';
+    let time = min + ' and ' + sec;
+    gameOverScreen.id = 'game-over-screen';
+    container.appendChild(gameOverScreen);
+    gameOverMessage.innerHTML = 'Congratulations! You Won!';
+    gameOverMessage.id = 'game-over-message';
     finalResult.innerHTML =
-      'With : ' + moveCounter + ' Moves and ' + starCount + starString;
+      'With : ' +
+      moveCounter +
+      ' Moves and ' +
+      starCount +
+      starString +
+      ' All in ' +
+      time;
     gameOverMessage.appendChild(finalResult);
     gameOverScreen.appendChild(gameOverMessage);
-    let playAgainBtn = document.createElement('button');
+
     playAgainBtn.id = 'play-again';
     playAgainBtn.innerHTML = 'Play Again';
     playAgainBtn.onclick = restart;
@@ -193,8 +214,8 @@ function showCard(card) {
 }
 
 function addCards() {
-  //   let cards = shuffle(cardContainer);
-  let cards = cardContainer;
+  let cards = shuffle(cardContainer);
+  //   let cards = cardContainer;
   for (let i = 0; i < 16; i++) {
     let card = cards[i].domCard;
     deck.appendChild(card);
@@ -226,6 +247,33 @@ function shuffle(array) {
     array[randomIndex] = temporaryValue;
   }
   return array;
+}
+
+let minutes = 0;
+let seconds = 0;
+
+function updateTime() {
+  let DOMminutes = document.getElementById('minutes');
+  let DOMseconds = document.getElementById('seconds');
+  let minStr = DOMminutes.innerHTML;
+  let secStr = DOMseconds.innerHTML;
+  seconds += 1;
+  if (seconds < 10) {
+    secStr = '0' + seconds;
+  } else if (seconds >= 60) {
+    minutes += 1;
+    if (minutes < 10) {
+      minStr = '0' + minutes;
+    } else {
+      minStr = minutes;
+    }
+    seconds = 0;
+    secStr = '0' + seconds;
+  } else {
+    secStr = seconds;
+  }
+  DOMminutes.innerHTML = minStr;
+  DOMseconds.innerHTML = secStr;
 }
 
 restart();
