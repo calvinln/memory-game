@@ -52,6 +52,18 @@ function restart() {
     let container = document.getElementById('container');
     container.removeChild(document.getElementById('game-over-screen'));
   }
+  let stars = document.getElementsByTagName('li');
+  if (stars) {
+    for (let i = 0; i < 3; i++) {
+      if (stars[i].childNodes[1].classList.contains('fa-star-o')) {
+        stars[i].childNodes[1].classList.toggle('fa-star');
+        stars[i].childNodes[1].classList.toggle('fa-star-o');
+      }
+    }
+  }
+  starCount = 3;
+  starIndex = 2;
+
   let index = 0;
   openCards = [];
   lockedCards = 0;
@@ -106,12 +118,11 @@ function addOpenCard(card) {
   openCards.push(card);
   if (openCards.length > 1) {
     incrementMoveCounter();
-    console.log(openCards);
+    adjustStars();
     if (openCards[0].symbol === card.symbol) {
       lockCard(openCards[0].domCard);
       lockCard(card.domCard);
       lockedCards += 2;
-      console.log(lockedCards);
       if (lockedCards >= 16) {
         gameOver();
       }
@@ -134,7 +145,9 @@ function gameOver() {
     gameOverMessage.innerHTML = 'Congratulations! You Won!';
     gameOverMessage.id = 'game-over-message';
     let finalResult = document.createElement('div');
-    finalResult.innerHTML = 'With : ' + moveCounter + ' Moves and 3 Stars.';
+    let starString = starCount === 1 ? ' star.' : ' stars.';
+    finalResult.innerHTML =
+      'With : ' + moveCounter + ' Moves and ' + starCount + starString;
     gameOverMessage.appendChild(finalResult);
     gameOverScreen.appendChild(gameOverMessage);
     let playAgainBtn = document.createElement('button');
@@ -143,6 +156,19 @@ function gameOver() {
     playAgainBtn.onclick = restart;
     gameOverScreen.appendChild(playAgainBtn);
   }, 2000);
+}
+
+let starIndex = 2;
+let starCount = 3;
+
+function adjustStars() {
+  if (moveCounter > 10 && moveCounter % 2 === 0 && starIndex > 0) {
+    let stars = document.getElementsByClassName('fa-star');
+    stars[starIndex].classList.toggle('fa-star-o');
+    stars[starIndex].classList.toggle('fa-star');
+    starIndex -= 1;
+    starCount -= 1;
+  }
 }
 
 function incrementMoveCounter() {
@@ -155,7 +181,6 @@ function hideCard(card) {
     card.classList.toggle('open');
     card.classList.toggle('show');
   }, 2000);
-  console.log('hide');
 }
 
 function lockCard(card) {

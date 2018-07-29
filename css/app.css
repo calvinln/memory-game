@@ -86,8 +86,8 @@ h1 {
   background: lightgray;
   width: 660px;
   height: 700px;
-  /* font-size: 100px; */
   top: 100px;
+  font-size: 25px;
   position: absolute;
   text-align: center;
   border-radius: 6px;
