@@ -52,7 +52,7 @@ let symbols = [
 let timer;
 
 function restart() {
-  timer = window.setInterval(updateTime, 1000);
+  timer = setInterval(updateTime, 1000);
   minutes = 0;
   seconds = 0;
   document.getElementById('minutes').innerHTML = '00';
