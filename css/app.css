@@ -17,7 +17,7 @@ body {
 }
 
 body {
-  background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+  background: #ffffff url('../img/geometry2.png');
   font-family: 'Coda', cursive;
 }
 
@@ -83,7 +83,7 @@ h1 {
 }
 
 #game-over-screen {
-  background: lightgray;
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   width: 660px;
   height: 700px;
   top: 128px;
