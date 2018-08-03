@@ -18,7 +18,6 @@ body {
 
 body {
   background: #ffffff url('../img/geometry2.png');
-  font-family: 'Coda', cursive;
 }
 
 #container {
@@ -29,14 +28,13 @@ body {
 }
 
 h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-family: 'Muli', sans-serif;
+  font-weight: 700;
 }
 
 #instructions {
-  font-size: 1.5em;
+  font-size: 1.2em;
   letter-spacing: 1px;
-  font-family: 'Open Sans', sans-serif;
 }
 
 #deck {

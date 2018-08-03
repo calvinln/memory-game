@@ -2,11 +2,21 @@
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44559805-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-44559805-2');
+    </script>
+
     <meta charset="utf-8">
-    <title>Matching Game</title>
-    <meta name="description" content="">
+    <title>Memory Game</title>
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
 
@@ -14,7 +24,7 @@
 
     <div id="container">
         <header>
-            <h1>Matching Game</h1>
+            <h1>Memory Game</h1>
         </header>
 
         <span id="timer">
@@ -47,7 +57,6 @@
 
         </ul>
         <div id="instructions">
-            <p>How fast can you match?</p>
             <p>Click each card and find their matching pair!</p>
         </div>
     </div>
